@@ -1,0 +1,56 @@
+{% extends 'layout.html' %}
+   <style>
+                     hr.class-1 {
+            border-top: 19px solid #8c8b8b;
+        }           </style>
+
+{% block title %}
+
+
+
+{% if articles %}
+    
+<form >
+    <input type="text" name = "keyword" class="input-sm" maxlength="64" placeholder="Ara...">
+<button type="get" class="btn btn-info">Ara</button>
+</form>
+    
+    {% for article in articles %}
+
+    <div class="row">
+                    <div class="col-lg-8">
+                        <!-- Post content-->
+                        <article>
+                            <!-- Post header-->
+                            <header class="mb-4">
+                                <!-- Post title-->
+                                <h3 class="fw-bolder mb-1">{{article.title}}</h1>
+                                <div class="text-muted fst-italic mb-2">Yazar: {{article.author}}</div>
+                                <hr>
+                                <!-- Post meta content-->
+                                <div class="text-active fst-italic mb-3">Yayinlanma tarihi {{article.createdDate}}</div>
+                                <hr>
+                                <!-- Post categories-->
+                            </header>
+                            <!-- Preview image figure-->
+                            {% if article.articleImage %}
+                            <figure class="mb-4"><img class="img-fluid rounded" src="/media/{{article.articleImage}}" alt="..." /></figure>
+                            {% endif %}
+                            <!-- Post content-->
+                            <section class="mb-5">
+                                <p class="fs-5 mb-4">
+                                {{article.content|safe|truncatechars:10}}
+                                </p>
+                               <a href={% url 'readarticle' article.id %}> <button class = "btn btn-danger"> devamini oku</button></a>
+                            </section>
+                        </article>
+                        <hr class="class-1" />
+                 
+            
+                </div>
+            </div>
+        
+    {% endfor %}
+{% endif %}
+
+{% endblock title %}

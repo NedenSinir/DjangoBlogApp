@@ -1,0 +1,60 @@
+{% extends 'layout.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+
+
+<h3>Hosgeldiniz {{request.user.username}}</h3>
+<hr>
+
+<a class="btn btn-danger" href="./addarticle" role="button">Makale Ekle</a>
+
+
+
+
+
+<br><br><br>
+
+
+{% if articles %}
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Yazar</th>
+      <th scope="col">Baslik</th>
+      <th scope="col">Yayinlanma zamani</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+
+    {% for article in articles  %}
+     <tr>
+      <th scope="row">{{article.id}}</th>
+      <td>{{article.author.username}}</td>
+      <td><a href="/article/readarticle/{{article.id}}">{{article.title}}</a></td>
+      <td>{{article.createdDate}}</td>
+      <td><a class="btn btn-danger" href={% url 'update' article.id %} role="button">Guncelle</a>
+</td>
+      <td><a class="btn btn-danger" href={% url 'delete' article.id %} role="button">Sil</a>
+</td>
+    </tr>
+    
+    
+    
+    {% endfor %}
+    
+  </tbody>
+</table>
+{% else %}
+<div class = "alert alert-danger">
+Henuz bir makale yayinlamadiniz
+</div>
+{% endif %}
+
+
+
+{% endblock title %}

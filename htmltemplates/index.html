@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+{% block title %}
+<div class ="jumbotron text-center">
+<h3>Hosgeldin la :D</h3>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore, cupiditate.</p>
+
+
+<p>
+{% if request.user.is_authenticated %}
+Giris yapilmis
+{% else %}
+Giris yapilmamis
+{% endif %}
+</p>
+</div>
+{% endblock title %}

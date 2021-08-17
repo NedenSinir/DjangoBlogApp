@@ -1,0 +1,55 @@
+
+<html lang="en">
+<head>
+ {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <!--<link rel="stylesheet" href={% static 'style.css' %}>-->
+
+    <title>Django Blog</title>
+</head>
+<body>
+
+    {% include "includes/navbar.html"%}
+    <div class = "container">
+
+
+    {% if messages %}
+        {% for message in messages %}
+            {% if message.tags == "info" %}
+            <div class="alert alert-danger">{{ message }}</div>
+
+
+            {% else %}
+
+            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
+
+
+
+
+
+
+
+
+
+    {% block title %}
+    <h3>None</h3>
+    {% endblock title %}
+    </div>
+
+
+
+
+
+    <script src="{% static 'js/jquery-3.6.0min.js' %}"></script>
+<script src="{% static 'js/bootstrap.js' %}"></script>
+<script src="https://cdn.ckeditor.com/4.16.1/standard/ckeditor.js"></script>
+</body>
+</html>

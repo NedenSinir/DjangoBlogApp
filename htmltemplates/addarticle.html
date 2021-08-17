@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+{% load crispy_forms_tags %}
+enctype="multipart/form-data"
+{% block title %}
+
+
+
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+  
+<h3>Hosgeldiniz {{request.user.username}}</h3>
+<hr>
+<form method="post" enctype="multipart/form-data">
+{% csrf_token %}
+ {{form.media}}
+{{form|crispy}}
+<button type="submit" class="btn btn-success">Makale Olustur</button>
+
+
+</form>
+  
+  
+  </div>
+</div>
+
+
+
+{% endblock title %}

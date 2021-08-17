@@ -1,0 +1,69 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+
+<div class="row">
+                <div class="col-lg-8">
+                    <!-- Post content-->
+                    <article>
+                        <!-- Post header-->
+                        <header class="mb-4">
+                            <!-- Post title-->
+                            <h3 class="fw-bolder mb-1">{{article.title}}</h1>
+                            <div class="text-muted fst-italic mb-2">Yazar: {{article.author}}</div>
+                            <hr>
+                            <!-- Post meta content-->
+                            <div class="text-active fst-italic mb-3">Yayinlanma tarihi {{article.createdDate}}</div>
+                            <hr>
+                            <!-- Post categories-->
+                        </header>
+                        <!-- Preview image figure-->
+                        {% if article.articleImage %}
+                        <figure class="mb-4"><img class="img-fluid rounded" src="/media/{{article.articleImage}}" alt="..." /></figure>
+                        {% endif %}
+                        <!-- Post content-->
+                        <section class="mb-5">
+                            <p class="fs-5 mb-4">
+                            {{article.content|safe}}
+                            </p>
+                        </section>
+                    </article>
+                    {% if commets %}
+                    {% for commet in commets %}
+                    
+                    <hr>
+                    
+                    <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
+                                    <div class="ms-3">
+                                        <div class="fw-bold">{{commet.author}}</div>
+                                        <div>{{commet.createDate}}</div>
+                                        <p>{{commet.content}}</p>
+                                        
+                    <hr>
+                    {% endfor %}
+                    {% else %}
+                    <div class = "alert alert-danger">
+                        Yourm yok
+                        </div>
+
+                    {% endif %}
+                     <section class="mb-5">
+                        <div class="card bg-light">
+
+                                <!-- Comment form-->
+                                <form class="mb-4" method = "post" action = "{% url "commet" article.id %}">
+                                    {% csrf_token %}                                
+                        <input class="form-control form-control-lg" type="text" placeholder="İsim girin" name="title">
+                            <div class="card-body">
+                                
+                                
+                                <textarea class="form-control" rows="3" placeholder="Join the discussion and leave a comment!" name = "content"></textarea>
+                                <button class = "btn btn-danger" type="submit"> Yorum yap</button>
+                                </form>
+                 
+          
+            </div>
+        </div>
+
+
+{% endblock title %}
